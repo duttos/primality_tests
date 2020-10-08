@@ -26,6 +26,7 @@ def mod_mat_pow_1st_col(M11, M12, M21, M22, k, n):
   an exponent k and a modulus n, evaluate M^k mod n and return
   the first column.
   '''
+  
   a, b, c, d = M11, M12, M21, M22
   digits = bin(k)[2 : ]
   subscript = 1
@@ -42,6 +43,33 @@ def mod_mat_pow_1st_col(M11, M12, M21, M22, k, n):
                            (c * M12 + d * M22) % n
       subscript += 1
   return M11, M21
+  
+
+def pseudoprimes(primes):
+  '''
+  Given a list of integers (obtained from a primality test),
+  check the primality of each one using the isprime() module.
+  If the test returns False, the input is added to the list
+  of pseudoprimes, which is the output.
+  Examples:
+    LUCAS TEST
+      pseudoprimes(lucas(range(10**5))) = OEIS A217120
+    DOUBLE LUCAS TEST
+      pseudoprimes(double_lucas(range(10**5))) = OEIS A212423
+    GENERALIZED LUCAS TEST
+      pseudoprimes(generalized_lucas(range(10**3),R=-1)) = [119, 161, 209, 221, 299, 329, 341, 371, 539, 551, 581, 611, 629, 671, 689, 731, 749, 779, 791, 851, 869, 899, 959, 989]
+      pseudoprimes(generalized_lucas(range(10**5),R=1)) = OEIS A212423
+      pseudoprimes(generalized_lucas(range(2**38),R=2)) = []
+    GENERALIZED PELL TEST
+      pseudoprimes(generalized_pell(range(10**5),X=2,Y=1)) = [1853, 5473, 5777, 10877, 23323, 27403, 75077]
+      pseudoprimes(generalized_pell(range(2**38),X=3,Y=2) = []
+  '''
+
+  pseudos = []
+  for n in primes:
+    if isprime(n) == False:
+      pseudos.append(n)
+  return pseudos
 
 
 def lucas(n, P = 1, Q = ''):
@@ -204,9 +232,9 @@ def double_lucas(n, P = 1, Q = ''):
     return primes
 
 
-def matrix_lucas(n, P = 1, Q = '', R = ''):
+def generalized_lucas(n, P = 1, Q = '', R = ''):
   '''
-  *** MATRIX LUCAS TEST ***
+  *** GENERALIZED LUCAS TEST ***
   INPUTS:
         / integer to be tested
     n = - path of a file with a number in each line
@@ -222,8 +250,8 @@ def matrix_lucas(n, P = 1, Q = '', R = ''):
     list of primes if n is a range of integers or a file path
 
   Examples:
-    matrix_lucas(range(3,8,2),R=2) = test 3, 5, 7 with matrix Lucas-Selfridge
-    matrix_lucas(11,P=1,Q=2,R=3) = test 11 with matrix Lucas, for P = 1, Q = 2 and R = 3
+    generalized_lucas(range(3,8,2),R=2) = test 3, 5, 7 with generalized Lucas-Selfridge
+    generalized_lucas(11,P=1,Q=2,R=3) = test 11 with generalized Lucas, for P = 1, Q = 2 and R = 3
   '''
 
   # n is a single integer
@@ -269,7 +297,7 @@ def matrix_lucas(n, P = 1, Q = '', R = ''):
     with open(n, 'r') as file:
       for line in file:
         i = int(line[ : -1])
-        res = matrix_lucas(i, P = P, Q = Q, R = R)
+        res = generalized_lucas(i, P = P, Q = Q, R = R)
         if res:
           primes.append(i)
     return primes
@@ -279,7 +307,7 @@ def matrix_lucas(n, P = 1, Q = '', R = ''):
     
     primes = []
     for i in n:
-      res = matrix_lucas(i, P = P, Q = Q, R = R)
+      res = generalized_lucas(i, P = P, Q = Q, R = R)
       if res:
         primes.append(i)
     return primes
@@ -364,26 +392,3 @@ def generalized_pell(n, X = '', Y = '', D = ''):
       if res:
           primes.append(i)
     return primes
-  
-
-def pseudoprimes(primes):
-  '''
-  Examples:
-    LUCAS TEST
-      pseudoprimes(lucas(range(10**5))) = OEIS A217120
-    DOUBLE LUCAS TEST
-      pseudoprimes(double_lucas(range(10**5))) = OEIS A212423
-    MATRIX LUCAS TEST
-      pseudoprimes(matrix_lucas(range(10**3),R=-1)) = [119, 161, 209, 221, 299, 329, 341, 371, 539, 551, 581, 611, 629, 671, 689, 731, 749, 779, 791, 851, 869, 899, 959, 989]
-      pseudoprimes(matrix_lucas(range(10**5),R=1)) = OEIS A212423
-      pseudoprimes(matrix_lucas(range(2**38),R=2)) = []
-    GENERALIZED PELL TEST
-      pseudoprimes(generalized_pell(range(10**5),X=2,Y=1)) = [1853, 5473, 5777, 10877, 23323, 27403, 75077]
-      pseudoprimes(generalized_pell(range(2**38),X=3,Y=2) = []
-  '''
-
-  pseudos = []
-  for n in primes:
-    if isprime(n) == False:
-      pseudos.append(n)
-  return pseudos
