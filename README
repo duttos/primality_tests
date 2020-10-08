@@ -10,10 +10,14 @@ The file tests.py contains two utility functions:
     If the test returns False, the input is added to the list of pseudoprimes, which is the output.
 The other functions are four primality tests:
 - lucas(n, P = 1, Q = ''): 
-    the Lucas test implemented using the above utility functions. If only the input contains only the integers to be tested, Selfridge method is used.
+    the Lucas test implemented using the above utility functions. 
+    If only the input contains only the integers to be tested, Selfridge method is used.
 - double_lucas(n, P = 1, Q = ''):
-    the Double Lucas test implemented using the above utility functions. If only the input contains only the integers to be tested, Selfridge method is used.
+    the Double Lucas test implemented using the above utility functions. 
+    If only the input contains only the integers to be tested, Selfridge method is used.
 - generalized_lucas(n, P = 1, Q = '', R = ''):
-    the Generalized Lucas test implemented using the above utility functions. If the input contains only the integers to be tested and R, Selfridge method is used.
+    the Generalized Lucas test implemented using the above utility functions. 
+    If the input contains only the integers to be tested and R, Selfridge method is used.
 - generalized_pell(n, X = '', Y = '', D = ''):
-    the Generalized Pell test implemented using the above utility functions. If the input contains only the integers to be tested, X and Y, Selfridge method is used.
+    the Generalized Pell test implemented using the above utility functions. 
+    If the input contains only the integers to be tested, X and Y, Selfridge method is used.
