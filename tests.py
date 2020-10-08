@@ -252,6 +252,10 @@ def generalized_lucas(n, P = 1, Q = '', R = ''):
   Examples:
     generalized_lucas(range(3,8,2),R=2) = test 3, 5, 7 with generalized Lucas-Selfridge
     generalized_lucas(11,P=1,Q=2,R=3) = test 11 with generalized Lucas, for P = 1, Q = 2 and R = 3
+
+    Test fermat pseudoprimes with base 2 up to 2**64, list taken from
+    http://www.cecm.sfu.ca/Pseudoprimes/index-2-to-64.html
+      generalized_lucas('psps-below-2-to-64.txt',R=2) = []
   '''
 
   # n is a single integer
@@ -333,6 +337,10 @@ def generalized_pell(n, X = '', Y = '', D = ''):
   Examples:
     generalized_pell(range(3,8,2),X=1,Y=3) = test 3,5,7 with Pell-Selfridge, X = 1, Y = 3 
     generalized_pell(11,X=4,Y=2,D=13) = test 11 with Pell, for X = 4, Y = 2, D = 13
+    
+    Test fermat pseudoprimes with base 2 up to 2**64, list taken from
+    http://www.cecm.sfu.ca/Pseudoprimes/index-2-to-64.html
+      generalized_pell('psps-below-2-to-64.txt',X=3,Y=2) = []
   '''
   
   # n is a single integer
